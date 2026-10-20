@@ -86,6 +86,14 @@ class CardiovascularAgeResponse(BaseModel):
     class Config:
         from_attributes = True
 
+class Vo2MaxResponse(BaseModel):
+    day: date
+    timestamp: Optional[datetime] = None
+    vo2_max: Optional[float] = None
+
+    class Config:
+        from_attributes = True
+
 # --- Sessions ---
 
 class SleepSessionResponse(BaseModel):
@@ -213,6 +221,7 @@ class DayDataResponse(BaseModel):
     readiness: Optional[ReadinessResponse] = None
     resilience: Optional[ResilienceResponse] = None
     cardiovascular_age: Optional[CardiovascularAgeResponse] = None
+    vo2max: Optional[Vo2MaxResponse] = None
     
     # Collections
     sleep_sessions: List[SleepSessionResponse] = []

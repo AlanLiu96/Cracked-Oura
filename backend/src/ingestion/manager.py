@@ -152,8 +152,12 @@ class OuraParser(IngestionBase):
             self.activity_processor.process_stress(day_stress_df)
 
         # --- 4. File-based processors (pass file path directly) ---
+        # NOTE: Oura exports have used both "sleep.csv" (newer) and
+        # "sleepmodel.csv" (older) for sleep sessions; support both.
+        # Upserts are id-keyed, so processing both is harmless.
         path_map = {
             "sleep.csv": self.sleep_processor.process_sleep_session,
+            "sleepmodel.csv": self.sleep_processor.process_sleep_session,
             "workout.csv": self.activity_processor.process_workout,
             "session.csv": self.activity_processor.process_meditation,
             "heartrate.csv": self.common_processor.process_heart_rate,

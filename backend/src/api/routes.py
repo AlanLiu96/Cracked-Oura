@@ -18,7 +18,7 @@ from ..config import config_manager
 from ..database import get_db, SessionLocal
 from ..models import (
     Sleep, Activity, Readiness, Resilience, SleepSession, Workout, Meditation, 
-    RingBattery, HeartRate, Temperature, RingConfiguration, Tag, CardiovascularAge
+    RingBattery, HeartRate, Temperature, RingConfiguration, Tag, CardiovascularAge, Vo2Max
 )
 from .schemas import (
     DayDataResponse,
@@ -315,6 +315,7 @@ async def get_day_data(
         readiness = db.query(Readiness).filter(Readiness.day == target_date).first()
         resilience = db.query(Resilience).filter(Resilience.day == target_date).first()
         cv_age = db.query(CardiovascularAge).filter(CardiovascularAge.day == target_date).first()
+        vo2max = db.query(Vo2Max).filter(Vo2Max.day == target_date).first()
         
         # Fetch detailed components
         sleep_sessions = db.query(SleepSession).filter(SleepSession.day == target_date).all()
@@ -336,6 +337,7 @@ async def get_day_data(
             "readiness": readiness,
             "resilience": resilience,
             "cardiovascular_age": cv_age,
+            "vo2max": vo2max,
             "ring_battery": battery,
             "sleep_sessions": sleep_sessions,
             "workouts": workouts,
@@ -395,6 +397,7 @@ def query_data(
             "readiness": Readiness,
             "resilience": Resilience,
             "cardiovascular_age": CardiovascularAge,
+            "vo2max": Vo2Max,
             "sleep_session": SleepSession,
             "workout": Workout,
             "meditation": Meditation,
@@ -483,6 +486,7 @@ def get_schema():
         "readiness": Readiness,
         "resilience": Resilience,
         "cardiovascular_age": CardiovascularAge,
+        "vo2max": Vo2Max,
         "sleep_session": SleepSession,
         "workout": Workout,
         "meditation": Meditation,
