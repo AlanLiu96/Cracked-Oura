@@ -29,7 +29,17 @@
     "appId": "com.elmoahorinta.crackedoura",
     "productName": "Cracked Oura",
     "mac": {
-      "icon": "icon.png"
+      "icon": "icon.png",
+      "category": "public.app-category.healthcare-fitness",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ]
     },
     "win": {
       "icon": "icon.png"
@@ -60,7 +70,7 @@
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
     "react-chartjs-2": "^5.3.1",
-    "react-day-picker": "^8.10.1",
+    "react-day-picker": "^9.14.0",
     "react-dom": "^19.2.0",
     "react-grid-layout": "^2.1.1",
     "react-is": "^19.2.3",
